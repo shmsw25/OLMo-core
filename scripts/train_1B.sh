@@ -8,6 +8,10 @@
 
 # -- trainer.load_path if you want to load from another model
 
+# when the config is a class, we could either use a json string or set individual value
+# e.g., `--trainer.hard_stop='value: 100, unit: steps'` or 
+#       `--trainer.hard_stop.value=100 --trainer.hard_stop.unit=steps`
+
 python -m olmo_core.launch.beaker \
 	--name olmo1B-pretrain \
 	--gpus 2 \
@@ -22,8 +26,7 @@ python -m olmo_core.launch.beaker \
 	  -- src/examples/llm/train.py \
 		olmo1B-pretrain-01 \
 		--trainer.save_folder=/oe-training-default/sewonm \
-		--trainer.max_duration.value=130_000_000_000 \
-		--trainer.max_duration.unit=tokens \
+		--trainer.max_duration='{value: 130_000_000_000, unit: tokens}' \
 		--trainer.callbacks.wandb.project=sewonm \
 		--trainer.callbacks.lm_evaluator.enabled=false \
 	    	--trainer.callbacks.downstream_evaluator.enabled=false \
