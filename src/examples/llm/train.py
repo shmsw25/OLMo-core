@@ -160,13 +160,26 @@ def build_config(opts, overrides: List[str]) -> ExperimentConfig:
     # docs: end-model-config
 
     log.info(f"Using data root: {DATA_ROOT}")
-    dataset_config = NumpyDatasetConfig(
-        paths=DATA_PATHS,
-        name=NumpyDatasetType.fsl,
-        sequence_length=opts.sequence_length,
-        tokenizer=tokenizer_config,
-        work_dir=work_dir,
-    )
+    
+
+    #dataset_config = NumpyDatasetConfig(
+    #    paths=DATA_PATHS,
+    #    name=NumpyDatasetType.fsl,
+    #    sequence_length=opts.sequence_length,
+    #    tokenizer=tokenizer_config,
+    #    work_dir=work_dir,
+    #)
+
+    from olmo_core.data.mixes.DataMix
+    dataset_config = 
+    def build_dataset_config(common: CommonComponents) -> NumpyDatasetConfig:
+            from flexolmo.data.mixes import CustomDataMix
+
+                dataset_config = common.dataset
+                    dataset_config.mix = CustomDataMix.public_mix
+                        return dataset_config
+
+
 
     data_loader_config = NumpyDataLoaderConfig(
         global_batch_size=256 * 1024,  # NOTE: this is specified in tokens, not instances

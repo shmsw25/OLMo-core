@@ -148,10 +148,12 @@ def build_launch_config(
             workspace=workspace,
         ),
         _to_beaker_env_secret(
-            name="AWS_CONFIG", secret=f"{beaker_user}_AWS_CONFIG", workspace=workspace
+            name="AWS_CONFIG", secret=f"{beaker_user}_AWS_CONFIG", workspace=workspace, 
+            required=False
         ),
         _to_beaker_env_secret(
-            name="AWS_CREDENTIALS", secret=f"{beaker_user}_AWS_CREDENTIALS", workspace=workspace
+            name="AWS_CREDENTIALS", secret=f"{beaker_user}_AWS_CREDENTIALS", workspace=workspace,
+            required=False
         ),
         _to_beaker_env_secret(
             name="R2_ENDPOINT_URL", secret="R2_ENDPOINT_URL", required=False, workspace=workspace
